@@ -1,0 +1,25 @@
+public class PropertyRating {
+    private double trafficScore;
+    private double safetyScore;
+    private double userReviewScore;
+
+    public double calculateOverallRating() {
+        return (trafficScore * 0.4) + (safetyScore * 0.3) + (userReviewScore * 0.3);
+    }
+}
+@RestController
+@RequestMapping("/api")
+public class PropertyController {
+
+    @GetMapping("/getTrafficData")
+    public TrafficData getTrafficData(@RequestParam String location) {
+        // Call Google Maps API and process response
+        return trafficService.getTrafficData(location);
+    }
+
+    @GetMapping("/getSafetyData")
+    public SafetyData getSafetyData(@RequestParam String location) {
+        // Call a third-party API for safety data
+        return safetyService.getSafetyData(location);
+    }
+}
