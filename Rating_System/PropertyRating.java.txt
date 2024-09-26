@@ -1,15 +1,13 @@
-public class PropertyRating {
-    private double trafficScore;
-    private double safetyScore;
-    private double userReviewScore;
+// src/main/java/com/example/propertyrating/Application.java
+package com.example.propertyrating;
 
-    public PropertyRating(double trafficScore, double safetyScore, double userReviewScore) {
-        this.trafficScore = trafficScore;
-        this.safetyScore = safetyScore;
-        this.userReviewScore = userReviewScore;
-    }
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    public double calculateOverallRating() {
-        return (trafficScore * 0.4) + (safetyScore * 0.3) + (userReviewScore * 0.3);
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
     }
 }
