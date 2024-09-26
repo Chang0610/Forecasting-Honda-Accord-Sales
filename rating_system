@@ -1,25 +1,74 @@
+// PropertyRating.java
 public class PropertyRating {
     private double trafficScore;
     private double safetyScore;
     private double userReviewScore;
 
+    public PropertyRating(double trafficScore, double safetyScore, double userReviewScore) {
+        this.trafficScore = trafficScore;
+        this.safetyScore = safetyScore;
+        this.userReviewScore = userReviewScore;
+    }
+
     public double calculateOverallRating() {
         return (trafficScore * 0.4) + (safetyScore * 0.3) + (userReviewScore * 0.3);
     }
 }
+
+// PropertyService.java
+import org.springframework.stereotype.Service;
+
+@Service
+public class PropertyService {
+
+    public PropertyRating getPropertyRating(int propertyId) {
+        // 假设我们从数据库获取这些数据
+        double trafficScore = 8.0; // 示例数据
+        double safetyScore = 7.0;
+        double userReviewScore = 9.0;
+
+        PropertyRating propertyRating = new PropertyRating(trafficScore, safetyScore, userReviewScore);
+        return propertyRating;
+    }
+}
+
+// PropertyController.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/api")
 public class PropertyController {
 
+    @Autowired
+    private PropertyService propertyService;
+
+    @GetMapping("/getRating")
+    public double getRating(@RequestParam int propertyId) {
+        PropertyRating rating = propertyService.getPropertyRating(propertyId);
+        return rating.calculateOverallRating();
+    }
+
+    // 其他API端点，例如获取交通数据和安全数据
     @GetMapping("/getTrafficData")
-    public TrafficData getTrafficData(@RequestParam String location) {
-        // Call Google Maps API and process response
-        return trafficService.getTrafficData(location);
+    public String getTrafficData(@RequestParam String location) {
+        return "Traffic data for location: " + location;
     }
 
     @GetMapping("/getSafetyData")
-    public SafetyData getSafetyData(@RequestParam String location) {
-        // Call a third-party API for safety data
-        return safetyService.getSafetyData(location);
+    public String getSafetyData(@RequestParam String location) {
+        return "Safety data for location: " + location;
+    }
+}
+
+// Application.java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
     }
 }
