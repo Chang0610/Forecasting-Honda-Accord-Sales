@@ -22,8 +22,7 @@ import org.springframework.stereotype.Service;
 public class PropertyService {
 
     public PropertyRating getPropertyRating(int propertyId) {
-        // 假设我们从数据库获取这些数据
-        double trafficScore = 8.0; // 示例数据
+        double trafficScore = 8.0; 
         double safetyScore = 7.0;
         double userReviewScore = 9.0;
 
@@ -49,7 +48,6 @@ public class PropertyController {
         return rating.calculateOverallRating();
     }
 
-    // 其他API端点，例如获取交通数据和安全数据
     @GetMapping("/getTrafficData")
     public String getTrafficData(@RequestParam String location) {
         return "Traffic data for location: " + location;
