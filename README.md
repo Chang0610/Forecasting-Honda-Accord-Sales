@@ -51,35 +51,6 @@ The dataset (`Accord-242A-Fall24.csv`) contains the following variables:
 - `CPIEnergy`: Consumer Price Index for the energy sector.
 - `MilesTraveled`: Total monthly miles traveled in the U.S. (in millions).
 
-## Instructions
-
-### Prerequisites
-Ensure you have Python 3.8 or higher installed. Install the necessary dependencies by running:
-
-```bash
-pip install -r requirements.txt
-```
-
-### Running the Project
-
-1. **Run the Jupyter Notebook**: The project is implemented in `Forecasting Honda Accord Sales Improved.ipynb`. You can open this file using Jupyter to train models, evaluate them, and conduct hyperparameter tuning.
-   
-2. **Deploy the Model**:
-   You can deploy the best model using Flask. Run the `app.py` file to start the server.
-
-```bash
-python app.py
-```
-
-Send a POST request to `/predict` with the features to get predictions.
-
-### Example POST Request
-```bash
-POST /predict
-{
-    "features": [unemployment, AccordQueries, CPIEnergy, CPIAll, MilesTraveled]
-}
-```
 
 ### Model Evaluation
 
